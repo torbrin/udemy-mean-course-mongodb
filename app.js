@@ -3,7 +3,7 @@ var serveStatic = require('serve-static');
 var mongodb = require('mongodb').MongoClient;
 
 var app = express();
-var port =  process.env.PORT;
+var port =  process.env.PORT || 3000;
 
 var eventsJson= [  {
                 name: 'Event 1',
@@ -122,7 +122,6 @@ app.get('/', function(req, res){
             if(results.length === 0) {
                 eventsCol.insertMany(eventsJson, function(err, results){
                     console.log(results);
-                    db.close;
                 });
             }
             
@@ -134,6 +133,7 @@ app.get('/', function(req, res){
                 registry: registryDox,
                 zipagg: zipAggDox
             });
+
         });
     });
 });
